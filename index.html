@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <title>Choose4Me</title>
+    <meta charset="utf8">
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Choose4Me</title>
+
+</head>
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Choose4Me</title>
+    <meta charset="utf8">
+</head>
+
+<body>
+    <div>
+        <h1 id=title>Choose4Me</h1>
+        <h2 id="h1pregunta"></h2>
+    </div>
+    <div class="contenedorBtn">
+        <input type="button" value="Options" class="optionsBtnSt" id='Config' />
+    </div>
+    <div id="popup-window">
+        <form>
+            <label for="Pregunta">Question</label>
+            <input type="text" name="pregunta" id="Pregunta" class="preguntaSty" value="¿Debo ducharme hoy?" />
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th><label for="OptionLabel">Option</label></th>
+                        <th>Color</th>
+                        <th>Weight</th>
+                        <th>Remove?</th>
+                    </tr>
+                </thead>
+                <tbody id="data-output">
+                    <!-- Prodcuts from javascript file in here. -->
+                </tbody>
+            </table>
+        
+        <div class="contenedorBtn">
+            <button id="addRow">AddOption</button>
+            <button type="submit">Submit</button>
+        </div>
+        </form>
+        
+        <button id="close-button">Cancel</button>
+    </div>
+
+
+    <div class="contenedor" id='ruleta'>
+        <div class="ruleta" width="80%" height="80%">
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>

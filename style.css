@@ -1,0 +1,313 @@
+:root {
+  --bg-cont-b: #303030;
+  --bg-cont-b2: #515151;
+  --bg-cont-w: #f5f5f5;
+  --bg-b: #4285f4;
+  --bg-r: #ea4335;
+  --bg-y: #fbbc05;
+  --bg-g: #34a853;
+  --segundos: 1.2s;
+}
+
+html, body {
+  height: 100%;
+  font-family: sans-serif;
+  margin: 0;
+}
+
+html {
+  font-size: 1.5vh;
+}
+
+body {
+  background-color: var(--bg-cont-w); /* Cambiado a la variable de color */
+  transition: background 0.8s;
+  overflow: hidden;
+}
+
+h1, h2 {
+  text-align: center;
+  font-size: 5em; 
+  margin-top: 0.47em;
+  margin-bottom: 0.37em;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 3em;
+  margin-top: 0.37em;
+  margin-bottom: 0.37em;
+}
+
+.contenedorBtn{
+  height: 5vh; /* Cambiado de 100% a 100vh para que sea más consistente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedor{
+  height: 100vh; /* Cambiado de 100% a 100vh para que sea más consistente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.ruleta {
+  height: 100vh; /* Cambiado de 100% a 100vh para que sea más consistente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#Config {
+  margin: auto;
+}
+
+#popup-window {
+  position: fixed;
+  width: 90%;
+  height: 90%;
+  background: rgba(255, 253, 253, 0.692);
+  border: 1px solid black;
+  padding: 10px;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  display: none;
+}
+
+.optionsBtnSt {
+  align-items: center;
+  appearance: none;
+  background-color: #3EB2FD;
+  background-image: linear-gradient(1deg, #4F58FD, #149BF3 99%);
+  background-size: calc(100% + 20px) calc(100% + 20px);
+  border-radius: 100px;
+  border-width: 0;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: CircularStd, sans-serif;
+  font-size: 1rem;
+  height: auto;
+  justify-content: center;
+  line-height: 1.5;
+  padding: 6px 20px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color .2s, background-position .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.optionsBtnSt:active,
+.optionsBtnSt:focus {
+  outline: none;
+}
+
+.optionsBtnSt:hover {
+  background-position: -20px -20px;
+}
+
+.optionsBtnSt:focus:not(:active) {
+  box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
+}
+
+table {
+  width: 80%;
+  margin: auto; /* Añadido para centrar la tabla */
+  text-align: center;
+  background-color: #3EB2FD;
+}
+
+/* Estilos para el formulario */
+form {
+  text-align: center; /* Centra el contenido del formulario */
+}
+
+/* Estilos para la etiqueta */
+label {
+  font-size: 1.7em; /* Tamaño de letra grande */
+  display: block; /* Hace que la etiqueta sea un bloque para separarla del elemento de entrada */
+  margin-bottom: 8px; /* Añade un espacio entre la etiqueta y el campo de entrada */
+}
+
+input[type=text] {
+  font-size: 1em;
+  width: 90%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  text-align: center; /* Añadido para centrar el texto en el input */
+}
+
+.preguntaSty {
+  font-size: 2em;
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  text-align: center; /* Añadido para centrar el texto en el input */
+}
+
+/* Estilo para botones por defecto */
+button, input[type="button"], input[type="submit"], input[type="reset"] {
+  background-color: #4285f4; /* Color de fondo */
+  color: #ffffff; /* Color del texto */
+  font-size: 1em; /* Tamaño de letra normal */
+  padding: 10px 15px; /* Espaciado interno */
+  margin: 20px; 
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer;
+  transition: background-color 0.2s; /* Transición de color de fondo */
+  text-align: center; /* Centra el texto dentro del botón */
+}
+
+/* Estilo para botones por defecto al pasar el ratón */
+button:hover, input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover {
+  background-color: #3469c7; /* Cambia el color de fondo al pasar el ratón */
+}
+
+/* Estilo para botones por defecto al hacer clic */
+button:active, input[type="button"]:active, input[type="submit"]:active, input[type="reset"]:active {
+  background-color: #2c5aa1; /* Cambia el color de fondo al hacer clic */
+}
+
+input[type=color] {
+  width: 90%;
+  text-align: center; /* Añadido para centrar el texto en el input */
+}
+
+
+input[type="range"] { 
+  margin: auto;
+  -webkit-appearance: none;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 5; /* iOS */
+}
+
+::-webkit-slider-runnable-track {
+  background: #ddd;
+}
+
+/*
+* 1. Set to 0 width and remove border for a slider without a thumb
+* 2. Shadow is negative the full width of the input and has a spread 
+*    of the width of the input.
+*/
+::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px; /* 1 */
+  height: 40px;
+  background: #fff;
+  box-shadow: -400px 0 0 400px dodgerblue; /* 2 */
+  border: 2px solid #999; /* 1 */
+}
+
+::-moz-range-track {
+  height: 40px;
+  background: #ddd;
+}
+
+::-moz-range-thumb {
+  background: #fff;
+  height: 40px;
+  width: 20px; /* 1 */
+  border: 3px solid #999; /* 1 */
+  border-radius: 0 !important;
+  box-shadow: -200px 0 0 200px dodgerblue;
+  box-sizing: border-box;
+}
+
+::-ms-fill-lower { 
+  background: dodgerblue;
+}
+
+::-ms-thumb { 
+  background: #fff;
+  border: 2px solid #999; /* 1 */
+  height: 40px;
+  width: 20px; /* 1 */
+  box-sizing: border-box;
+}
+
+::-ms-ticks-after { 
+  display: none; 
+}
+
+::-ms-ticks-before { 
+  display: none; 
+}
+
+::-ms-track { 
+  background: #ddd;
+  color: transparent;
+  height: 40px;
+  border: none;
+}
+
+::-ms-tooltip { 
+  display: none;
+}
+
+/* Clase para el botón redondo */
+.removeBtn {
+  border-radius: 50%;
+  width: 40px; /* Ajusta el tamaño del botón según tus necesidades */
+  height: 40px; /* Ajusta el tamaño del botón según tus necesidades */
+  background-color: #ea4335; /* Color de fondo rojo */
+  color: #fff; /* Color de texto blanco */
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.removeBtn:hover {
+  background-color: #c73126; /* Color de fondo rojo oscuro al pasar el ratón */
+}
+
+/* Estilo para la tabla */
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Estilo para las celdas */
+.custom-table td, .custom-table th {
+  border: 1px solid #dddddd; /* Línea sutil para marcar la separación de las celdas */
+  padding: 8px; /* Ajusta el espacio interno según sea necesario */
+  text-align: center; /* Centra el contenido dentro de las celdas */
+}
+
+/* Estilo para filas impares */
+.custom-table tr:nth-child(odd) {
+  background-color: #f2f2f2; /* Fondo ligeramente gris para filas impares */
+}
+
+/* Estilo para filas pares */
+.custom-table tr:nth-child(even) {
+  background-color: #ffffff; /* Fondo blanco para filas pares */
+}
