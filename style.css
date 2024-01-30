@@ -140,13 +140,13 @@ form {
 
 /* Estilos para la etiqueta */
 label {
-  font-size: 1.7em; /* Tamaño de letra grande */
+  font-size: 1.5em; /* Tamaño de letra grande */
   display: block; /* Hace que la etiqueta sea un bloque para separarla del elemento de entrada */
-  margin-bottom: 8px; /* Añade un espacio entre la etiqueta y el campo de entrada */
+  //margin-bottom: 8px; /* Añade un espacio entre la etiqueta y el campo de entrada */
 }
 
 input[type=text] {
-  font-size: 2em;
+  font-size: 1.5em;
   width: 90%;
   padding: 12px 20px;
   margin: 8px 0;
