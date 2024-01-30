@@ -31,11 +31,11 @@ var addRow = document.getElementById("addRow");
 
 for (var i = 0; i < options.length; i++) {
     //clearBtn[i] = document.querySelector('input[type="button"]');
-    console.log(i);
+    //console.log(i);
     clearBtn[i] = document.getElementById('input[remove' + i + ']');
     if (clearBtn[i] != null) {
         clearBtn[i].addEventListener("click", function () {
-
+			
         });
     }
 }
@@ -340,7 +340,7 @@ function handleSubmit(event) {
 
     drawRouletteWheel();
     reloadConfig();
-    popupWindow.style.display = "none";
+    //popupWindow.style.display = "none";
 }
 
 
@@ -352,8 +352,8 @@ function reloadConfig() {
         out +=
             `
            <tr>
-             <td><input type="text" value=`+ options[i].value + ` name=opt` + i + `value id="opt` + i + `" /></td>
-             <td><input type="color" value=`+ options[i].color + ` name=opt` + i + `color id="opt` + i + `" /></td>
+             <td><input type="text" value=`+ options[i].value + ` name=opt` + i + `value id="opt` + i + `value" onkeydown="if (event.keyCode == 13) { /*alert('enter')*/; return false;}" /></td>
+             <td><input type="color" value=`+ options[i].color + ` name=opt` + i + `color id="opt` + i + `color" /></td>
              <td><input type="range" min="1" max="100" value="`+ options[i].weight + `" class="custom-slider" id="opt` + i + `weight" name=opt` + i + `weight></td>
              <td><button id="removeBtn`+ i + `" onclick="deleteRow(` + i + `)" class="removeBtn" value="` + i + `">x</button></td>          
               
