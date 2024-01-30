@@ -66,7 +66,7 @@ drawRouletteWheel();
 
 
 function addRowF() {
-    options.push({ value: "Yes", color: "#00FF00", weight: 100 });
+    options.push({ value: "Yes", color: randomColor(), weight: 100 });
     reloadConfig();
 };
 
@@ -77,7 +77,7 @@ function computeTotalWeight() {
     }
     return weight;
 }
-/*
+
 function byte2Hex(n) {
   var nybHexString = "0123456789ABCDEF";
   return (
@@ -85,9 +85,42 @@ function byte2Hex(n) {
     nybHexString.substr(n & 0x0f, 1)
   );
 }
-*/
+
 function RGB2Color(r, g, b) {
     return "#" + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
+}
+
+function HSVtoRGB(h, s, v) {
+    var r, g, b, i, f, p, q, t;
+    if (arguments.length === 1) {
+        s = h.s, v = h.v, h = h.h;
+    }
+    i = Math.floor(h * 6);
+    f = h * 6 - i;
+    p = v * (1 - s);
+    q = v * (1 - f * s);
+    t = v * (1 - (1 - f) * s);
+    switch (i % 6) {
+        case 0: r = v, g = t, b = p; break;
+        case 1: r = q, g = v, b = p; break;
+        case 2: r = p, g = v, b = t; break;
+        case 3: r = p, g = q, b = v; break;
+        case 4: r = t, g = p, b = v; break;
+        case 5: r = v, g = p, b = q; break;
+    }
+    return {
+        r: Math.round(r * 255),
+        g: Math.round(g * 255),
+        b: Math.round(b * 255)
+    };
+}
+
+function randomColor( ) {
+	var h = Math.random()*1000;
+	console.log(h);
+	var color = HSVtoRGB(h/1000.00000,1,1);
+	console.log(color);
+    return RGB2Color(color.r, color.g, color.b);
 }
 
 function getColor(item, maxitem) {
