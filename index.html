@@ -5,12 +5,10 @@
 <head>
     <title>Choose4Me</title>
     <meta charset="utf8">
-
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <title>Choose4Me</title>
 
 </head>
 
@@ -31,7 +29,9 @@
     <div class="contenedorBtn">
         <input type="button" value="Options" class="optionsBtnSt" id='Config' />
     </div>
-    <div id="popup-window">
+	<br>
+    <div id="popup-window" class=divScroll>
+	
         <form>
             <label for="Pregunta">Question</label>
             <input type="text" name="pregunta" id="Pregunta" class="preguntaSty" value="¿Debo ducharme hoy?" />
@@ -39,9 +39,9 @@
                 <thead>
                     <tr>
                         <th><label for="OptionLabel">Option</label></th>
-                        <th>Color</th>
-                        <th>Weight</th>
-                        <th>Remove?</th>
+						<th><label for="OptionLabel">Color</label></th>
+						<th><label for="OptionLabel">Probability</label></th>
+						<th><label for="OptionLabel">Remove?</label></th>
                     </tr>
                 </thead>
                 <tbody id="data-output">
@@ -49,13 +49,20 @@
                 </tbody>
             </table>
         
-        <div class="contenedorBtn">
-            <button id="addRow">AddOption</button>
-            <button type="submit">Submit</button>
-        </div>
+			<div class="contenedorBtn">
+				<button type="submit">Submit</button>
+			</div>
         </form>
+		<br>
+		<div class="contenedorBtn">
+			<button id="addRow">AddOption</button>
+		</div>
+		<br>
+		<div class="contenedorBtn" >
+			<button id="close-button">Cancel</button>
+		</div>
         
-        <button id="close-button">Cancel</button>
+       
     </div>
 
 

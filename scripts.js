@@ -276,12 +276,12 @@ function stopRotateWheel() {
     ctx.save();
 
     document.body.style.backgroundColor = options[index].color; //getColor(index, options.length)
-    ctx.font = "bold " + sizeWidth / 10 + "px Helvetica, Arial";
+    ctx.font = "bold " + sizeWidth / 5 + "px Helvetica, Arial";
     var text = options[index].value;
     ctx.fillText(
         text,
         window.innerWidth / 2 - ctx.measureText(text).width / 2,
-        window.innerHeight / 2 + 10
+        window.innerHeight / 2.8 
     );
     ctx.restore();
 }
@@ -368,8 +368,6 @@ function reloadConfig() {
     out = "";
     out += Pregunta;
     placeholder2.innerHTML = out;
-
-
 }
 
 function deleteRow(r) {
