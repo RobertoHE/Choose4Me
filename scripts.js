@@ -1,12 +1,40 @@
-//var options = ["$100", "$10", "$25", "$250", "$30", "$1000", "$1", "$200", "$45", "$500", "$5", "$20", "Lose", "$1000000", "Lose", "$350", "$5", "$99"];
+// Funciones para manejar cookies
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+function eraseCookie(name) {
+    document.cookie = name + '=; Max-Age=-99999999;';
+}
+
+// Variables y configuración inicial
 var options = [
     { value: "Si", color: "#00FF00", weight: 90 },
     { value: "NO", color: "#FF0000", weight: 50 },
     { value: "Repetir", color: "#FFFF00", weight: 10 }
 ];
 
-var clearBtn = {};
 var Pregunta = "¿Debo ducharme hoy?";
+
+
+var clearBtn = {};
 var startAngle = 0;
 var totalWeight = 0;
 //var arc = Math.PI / (options.length / 2);
@@ -27,6 +55,24 @@ var popupLink = document.getElementById("Config");
 var popupWindow = document.getElementById("popup-window");
 var closeButton = document.getElementById("close-button");
 var addRow = document.getElementById("addRow");
+
+// Inicialización
+window.onload = function() {
+    var preguntaCookie = getCookie('Pregunta');
+    var optionsCookie = getCookie('Options');
+
+    if (preguntaCookie) {
+        Pregunta = preguntaCookie;
+    }
+
+    if (optionsCookie) {
+        options = JSON.parse(optionsCookie);
+    }
+
+    popupWindow.style.display = "none";
+    reloadConfig();
+    drawRouletteWheel();
+};
 
 
 for (var i = 0; i < options.length; i++) {
@@ -54,6 +100,7 @@ closeButton.addEventListener("click", function () {
 
 
 addRow.addEventListener("click", function () {
+	
     addRowF();
 });
 
@@ -65,19 +112,10 @@ reloadConfig();
 drawRouletteWheel();
 
 
-function addRowF() {
-    options.push({ value: "Yes", color: randomColor(), weight: 100 });
-    reloadConfig();
-};
 
-function computeTotalWeight() {
-    var weight = 0;
-    for (var i = 0; i < options.length; i++) {
-        weight += options[i].weight;
-    }
-    return weight;
-}
 
+
+//Color
 function byte2Hex(n) {
   var nybHexString = "0123456789ABCDEF";
   return (
@@ -135,6 +173,17 @@ function getColor(item, maxitem) {
 
     return RGB2Color(red, green, blue);
 }
+
+
+// Ruleta
+function computeTotalWeight() {
+    var weight = 0;
+    for (var i = 0; i < options.length; i++) {
+        weight += options[i].weight;
+    }
+    return weight;
+}
+
 
 function drawRouletteWheel() {
     var canvas = document.getElementById("canvas");
@@ -326,7 +375,7 @@ function easeOut(t, b, c, d) {
 }
 
 
-
+// Funciones opciones
 function getOptions() {
     return options;
 }
@@ -370,6 +419,9 @@ function handleSubmit(event) {
     }
 
     //console.log(options);
+	
+	setCookie('Pregunta', Pregunta, 365*10); // Guardar pregunta
+    setCookie('Options', JSON.stringify(options), 365*10); // Guardar opciones
 
     drawRouletteWheel();
     reloadConfig();
@@ -402,6 +454,11 @@ function reloadConfig() {
     out += Pregunta;
     placeholder2.innerHTML = out;
 }
+
+function addRowF() {
+    options.push({ value: "Yes", color: randomColor(), weight: 100 });
+    reloadConfig();
+};
 
 function deleteRow(r) {
     if (options.length == 1) {
