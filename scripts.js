@@ -1,29 +1,3 @@
-// Funciones para manejar cookies
-function setCookie(name, value, days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "") + expires + "; path=/";
-}
-
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-}
-
-function eraseCookie(name) {
-    document.cookie = name + '=; Max-Age=-99999999;';
-}
-
 // Variables y configuración inicial
 var options = [
     { value: "Si", color: "#00FF00", weight: 90 },
@@ -56,19 +30,46 @@ var popupWindow = document.getElementById("popup-window");
 var closeButton = document.getElementById("close-button");
 var addRow = document.getElementById("addRow");
 
-// Inicialización
-window.onload = function() {
+
+
+// Funciones para manejar cookies
+function setCookie(name, value, days) {
+	localStorage.setItem(name,value);
+	//console.log(localStorage.getItem(name));
+	return;
+}
+
+function getCookie(name) {
+	//console.log("getCookie");
+	return localStorage.getItem(name)
+	}
+
+function eraseCookie(name) {
+    localStorage.removeItem(name);
+}
+
+
+function loadSavedData() {
     var preguntaCookie = getCookie('Pregunta');
     var optionsCookie = getCookie('Options');
 
     if (preguntaCookie) {
         Pregunta = preguntaCookie;
+		//console.log(Pregunta);
+		
     }
 
     if (optionsCookie) {
         options = JSON.parse(optionsCookie);
+		//console.log(optionsCookie);
     }
+}
 
+// Inicialización
+window.onload = function() {
+	//console.log("onLoad");
+   
+	loadSavedData();
     popupWindow.style.display = "none";
     reloadConfig();
     drawRouletteWheel();
@@ -94,14 +95,19 @@ popupLink.addEventListener("click", function (event) {
 // Hide the pop-up window when the close button is clicked
 closeButton.addEventListener("click", function () {
     popupWindow.style.display = "none";
-    reloadConfig();
+	loadSavedData();
+	reloadConfig();
     drawRouletteWheel();
 });
 
 
 addRow.addEventListener("click", function () {
 	
-    addRowF();
+	
+    //addRowF();
+	//console.log("addRow");
+
+	
 });
 
 
@@ -155,9 +161,9 @@ function HSVtoRGB(h, s, v) {
 
 function randomColor( ) {
 	var h = Math.random()*1000;
-	console.log(h);
+	//console.log(h);
 	var color = HSVtoRGB(h/1000.00000,1,1);
-	console.log(color);
+	//console.log(color);
     return RGB2Color(color.r, color.g, color.b);
 }
 
@@ -379,6 +385,19 @@ function easeOut(t, b, c, d) {
 function getOptions() {
     return options;
 }
+function enviarFormulario(boton) {
+      // Actualiza el valor del campo oculto con el identificador del botón pulsado
+      document.getElementById('botonPulsado').value = boton;
+
+      // Realiza una acción adicional si el botón
+      if (boton === 'saveBtn') {
+        // Acción adicional
+		//console.log("saveBTN");
+        //alert('Se ha pulsado el botón 2');
+      }
+
+      // El formulario se enviará automáticamente al usar type="submit" en los botones
+    }
 
 function handleSubmit(event) {
     event.preventDefault();
@@ -386,8 +405,8 @@ function handleSubmit(event) {
     const data = new FormData(event.target);
     // Do a bit of work to convert the entries to a plain JS object
     const value = Object.fromEntries(data.entries());
-
-    //console.log({value});
+	//console.log(value);
+	
     var count = 0;
     for (var prop in value) {
         if (value.hasOwnProperty(prop)) {
@@ -401,6 +420,10 @@ function handleSubmit(event) {
         var key = "pregunta";
         if (value.hasOwnProperty(key)) {
             Pregunta = value[key];
+        }
+		var key = "botonPulsado";
+        if (value.hasOwnProperty(key)) {
+            var btnPulsado = value[key];
         }
         key = "opt" + i + "value";
         if (value.hasOwnProperty(key)) {
@@ -419,17 +442,25 @@ function handleSubmit(event) {
     }
 
     //console.log(options);
-	
-	setCookie('Pregunta', Pregunta, 365*10); // Guardar pregunta
-    setCookie('Options', JSON.stringify(options), 365*10); // Guardar opciones
-
-    drawRouletteWheel();
+	if (btnPulsado == "saveBtn")
+	{
+		setCookie('Pregunta', Pregunta, 365*10); // Guardar pregunta
+		setCookie('Options', JSON.stringify(options), 365*10); // Guardar opciones
+		popupWindow.style.display = "none";
+		drawRouletteWheel();
+	}
+	else
+	{
+		addRowF();
+	}
+    
     reloadConfig();
     //popupWindow.style.display = "none";
 }
 
 
 function reloadConfig() {
+	
     let placeholder = document.querySelector("#data-output");
     let out = "";
     //for(let opt of options){
@@ -453,6 +484,8 @@ function reloadConfig() {
     out = "";
     out += Pregunta;
     placeholder2.innerHTML = out;
+	
+	document.getElementById('Pregunta').value = Pregunta;
 }
 
 function addRowF() {
