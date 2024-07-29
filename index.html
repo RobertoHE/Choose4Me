@@ -35,7 +35,7 @@
 	
         <form>
             <label for="Pregunta">Question</label>
-            <input type="text" name="pregunta" id="Pregunta" class="preguntaSty" value="¿Debo ducharme hoy?" />
+            <input type="text" name="pregunta" id="Pregunta" class="preguntaSty" value="" />
             <table class="custom-table">
                 <thead>
                     <tr>
@@ -49,16 +49,18 @@
                     <!-- Prodcuts from javascript file in here. -->
                 </tbody>
             </table>
-        
+			<input type="hidden" id="botonPulsado" name="botonPulsado" value="">
+			
+			<div class="contenedorBtn">
+				<button type="submit" id="addRow" value="addRowBtn" onclick="enviarFormulario('addRowBtn')">AddOption</button>
+			</div>
+			<br>
 			<div class="contenedorBtn">
 				<!--<button id="addRow">AddOption</button> -->
-				<button type="submit">Save</button>
+				<button type="submit" value="saveBtn" onclick="enviarFormulario('saveBtn')">Save</button>
 			</div>
         </form>
 		<br>
-		<div class="contenedorBtn">
-			<button id="addRow">AddOption</button>
-		</div>
 		<br>
 		<div class="contenedorBtn" >
 			<button id="close-button">Close</button>
